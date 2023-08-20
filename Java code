@@ -1,0 +1,55 @@
+class Solution {
+    public String gcdOfStrings(String str1, String str2) {
+        // HashSet<Character> set = new HashSet<>();
+        // int i = 0;
+        // int j = 0;
+        // if (!(str1+str2).equals(str2+str1))  return "";
+        // while(i < str1.length() && j < str2.length()){
+        //     if(str1.charAt(i) == str2.charAt(j)){
+        //         set.add(str1.charAt(i));
+        //     }
+        //     i++;
+        //     j++;
+        // }
+        // StringBuilder sb = new StringBuilder();
+        // for( char c : set){
+        //     sb.append(c);
+        // }
+        // return sb.toString();
+
+        if (!(str1+str2).equals(str2+str1)){
+            return "";
+        }
+        int len1 = str1.length();
+        int len2 = str2.length();
+        int min = Math.min(len1, len2);
+        int gcd = 1;
+        for(int i = 2; i<= min; i++){
+            if(len1 % i == 0 && len2 % i == 0){
+                gcd = i;
+            }
+        }
+        return str2.substring(0, gcd);
+    }
+
+    public static void main(String[] args){
+        String str1 = "ABCABC";
+        String str2 = "ABC";
+        Solution obj = new Solution();
+        String ans = obj.gcdOfStrings(str1, str2);
+        System.out.println(ans);
+     }
+}
+
+
+Example 1:
+Input: str1 = "ABCABC", str2 = "ABC"
+Output: "ABC"
+  
+Example 2:
+Input: str1 = "ABABAB", str2 = "ABAB"
+Output: "AB"
+  
+Example 3:
+Input: str1 = "LEET", str2 = "CODE"
+Output: ""
